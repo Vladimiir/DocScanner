@@ -6,9 +6,15 @@
 //
 
 import SwiftUI
+import PhotosUI
 
 struct DashboardView: View {
     @StateObject private var vm = DashboardViewModel()
+    private var rows = [
+        GridItem(.flexible(), spacing: 10),
+        GridItem(.flexible(), spacing: 10),
+        GridItem(.flexible(), spacing: 10)
+    ]
 
     var body: some View {
         VStack {
@@ -22,26 +28,21 @@ struct DashboardView: View {
             Spacer()
                 .frame(height: 30)
 
-//            ScrollView(.horizontal) {
-                Grid(horizontalSpacing: 10, verticalSpacing: 10) {
-                    ForEach(0..<5) { row in
-                        GridRow {
-                            ForEach(0..<5) { column in
-                                Button(action: {}) {
-                                    Image(systemName: "heart.fill")
-                                        .tint(Color.red)
-                                        .frame(width: 50, height: 50)
-                                }
-                                .background(Color.green.opacity(0.25))
-                            }
+            ScrollView {
+                LazyVGrid(columns: rows) {
+                    ForEach(vm.selectedPhotosData, id: \.self) { photoData in
+                        if let image = UIImage(data: photoData) {
+                            Image(uiImage: image)
+                                .resizable()
+                                .scaledToFit()
                         }
                     }
                 }
-//                .background(Color.purple.opacity(0.25))
-//            }
-//            .background(Color.gray.opacity(0.25))
+                .background(Color.gray.opacity(0.25))
+            }
 
             Spacer()
+                .frame(maxHeight: 30)
 
             HStack {
                 Button {
@@ -55,13 +56,12 @@ struct DashboardView: View {
                     .frame(width: 50)
 
                 Button {
-                    // TODO: show user's gallery
+                    vm.isGalleryPresented.toggle()
                 } label: {
                     Text("Gallery")
                         .font(.title2)
                 }
             }
-//            .background(Color.green.opacity(0.25))
 
             Spacer()
                 .frame(height: 50)
@@ -79,6 +79,22 @@ struct DashboardView: View {
 
                 vm.isScannerPresented.toggle()
             })
+        }
+        .sheet(isPresented: $vm.isGalleryPresented) {
+            PhotosPicker(selection: $vm.selectedImages,
+                         matching: .images,
+                         photoLibrary: .shared()) {
+                Text("Select Multiple Photos")
+            }
+            .onChange(of: vm.selectedImages) { newItems in
+                for newItem in newItems {
+                    Task {
+                        if let data = try? await newItem.loadTransferable(type: Data.self) {
+                            vm.selectedPhotosData.append(data)
+                        }
+                    }
+                }
+            }
         }
     }
 }

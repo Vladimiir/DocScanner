@@ -12,6 +12,7 @@
 		36241B1C2972FE1600A78C58 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 36241B1B2972FE1600A78C58 /* Assets.xcassets */; };
 		36241B1F2972FE1600A78C58 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 36241B1E2972FE1600A78C58 /* Preview Assets.xcassets */; };
 		36241B27297308D800A78C58 /* DashboardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36241B26297308D800A78C58 /* DashboardViewModel.swift */; };
+		36241B2A297313B600A78C58 /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36241B29297313B600A78C58 /* CameraView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -21,6 +22,7 @@
 		36241B1B2972FE1600A78C58 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		36241B1E2972FE1600A78C58 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		36241B26297308D800A78C58 /* DashboardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewModel.swift; sourceTree = "<group>"; };
+		36241B29297313B600A78C58 /* CameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,6 +57,7 @@
 			children = (
 				36241B172972FE1400A78C58 /* DocScannerApp.swift */,
 				36241B25297308D200A78C58 /* Dashboard */,
+				36241B282973139F00A78C58 /* Scanner */,
 				36241B1B2972FE1600A78C58 /* Assets.xcassets */,
 				36241B1D2972FE1600A78C58 /* Preview Content */,
 			);
@@ -76,6 +79,14 @@
 				36241B26297308D800A78C58 /* DashboardViewModel.swift */,
 			);
 			path = Dashboard;
+			sourceTree = "<group>";
+		};
+		36241B282973139F00A78C58 /* Scanner */ = {
+			isa = PBXGroup;
+			children = (
+				36241B29297313B600A78C58 /* CameraView.swift */,
+			);
+			path = Scanner;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -151,6 +162,7 @@
 				36241B27297308D800A78C58 /* DashboardViewModel.swift in Sources */,
 				36241B1A2972FE1400A78C58 /* DashboardView.swift in Sources */,
 				36241B182972FE1400A78C58 /* DocScannerApp.swift in Sources */,
+				36241B2A297313B600A78C58 /* CameraView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

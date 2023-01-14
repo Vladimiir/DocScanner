@@ -19,7 +19,7 @@ struct DashboardView: View {
 
             HStack {
                 Button {
-                    // TODO: call Vision
+                    vm.isScannerPresented.toggle()
                 } label: {
                     Text("Scan")
                 }
@@ -34,6 +34,9 @@ struct DashboardView: View {
                 }
             }
             .frame(height: 150)
+        }
+        .fullScreenCover(isPresented: $vm.isScannerPresented) {
+            CameraView()
         }
     }
 }

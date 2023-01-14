@@ -11,8 +11,22 @@ import VisionKit
 
 struct CameraView: UIViewControllerRepresentable {
 
+    typealias CameraResult = Result<VNDocumentCameraScan, Error>
+    typealias CancelAction = () -> Void
+    typealias ResultAction = (CameraResult) -> Void
+
+    let cancelAction: CancelAction
+    let resultAction: ResultAction
+
+    init(cancelAction: @escaping CancelAction,
+         resultAction: @escaping ResultAction) {
+        self.cancelAction = cancelAction
+        self.resultAction = resultAction
+    }
+
     func makeCoordinator() -> Coordinator {
-        Coordinator()
+        Coordinator(cancelAction: cancelAction,
+                    resultAction: resultAction)
     }
 
     func makeUIViewController(context: Context) -> VNDocumentCameraViewController  {
@@ -29,18 +43,27 @@ extension CameraView {
 
     class Coordinator: NSObject, VNDocumentCameraViewControllerDelegate {
 
+        let cancelAction: CancelAction
+        let resultAction: ResultAction
+
+        init(cancelAction: @escaping CancelAction,
+             resultAction: @escaping ResultAction) {
+            self.cancelAction = cancelAction
+            self.resultAction = resultAction
+        }
+
         func documentCameraViewController(_ controller: VNDocumentCameraViewController,
                                           didFinishWith scan: VNDocumentCameraScan) {
-
+            resultAction(.success(scan))
         }
 
         func documentCameraViewControllerDidCancel(_ controller: VNDocumentCameraViewController) {
-
+            cancelAction()
         }
 
         func documentCameraViewController(_ controller: VNDocumentCameraViewController,
                                           didFailWithError error: Error) {
-
+            resultAction(.failure(error))
         }
     }
 }

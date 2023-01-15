@@ -23,7 +23,19 @@ struct SelectedPhotoView: View {
             Spacer()
                 .frame(height: 20)
 
-            Text("SelectedPhotoView\nSelectedPhotoView\nSelectedPhotoView\n SelectedPhotoView\nSelectedPhotoView\nSelectedPhotoView\n")
+            Text(vm.recognizedText)
+                .frame(maxWidth: .infinity)
+                .padding(.top, 10)
+                .background(Color.gray.opacity(0.25))
         }
+        .onAppear {
+            vm.onAppearAction()
+        }
+    }
+}
+
+struct SelectedPhotoView_Previews: PreviewProvider {
+    static var previews: some View {
+        SelectedPhotoView(vm: SelectedPhotoViewModel(UIImage()))
     }
 }

@@ -9,11 +9,20 @@ import UIKit
 
 class SelectedPhotoViewModel: ObservableObject {
 
-//    private let textRecognizer
-
+    let textRecognizer = TextRecognizer()
     let image: UIImage
+    @Published var recognizedText = ""
 
     init(_ image: UIImage) {
         self.image = image
+    }
+
+    func onAppearAction() {
+        textRecognizer.recognizeTextInImage(image)
+        textRecognizer.handler = { text in
+            DispatchQueue.main.async {
+                self.recognizedText = text
+            }
+        }
     }
 }

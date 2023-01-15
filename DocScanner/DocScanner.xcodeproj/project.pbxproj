@@ -15,6 +15,7 @@
 		36241B2A297313B600A78C58 /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36241B29297313B600A78C58 /* CameraView.swift */; };
 		36241B322974432B00A78C58 /* SelectedPhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36241B312974432B00A78C58 /* SelectedPhotoView.swift */; };
 		36241B342974514700A78C58 /* SelectedPhotoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36241B332974514700A78C58 /* SelectedPhotoViewModel.swift */; };
+		36241B372974576900A78C58 /* TextRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36241B362974576900A78C58 /* TextRecognizer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		36241B2B29731E0500A78C58 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		36241B312974432B00A78C58 /* SelectedPhotoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedPhotoView.swift; sourceTree = "<group>"; };
 		36241B332974514700A78C58 /* SelectedPhotoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedPhotoViewModel.swift; sourceTree = "<group>"; };
+		36241B362974576900A78C58 /* TextRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextRecognizer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,6 +94,7 @@
 			isa = PBXGroup;
 			children = (
 				36241B29297313B600A78C58 /* CameraView.swift */,
+				36241B362974576900A78C58 /* TextRecognizer.swift */,
 			);
 			path = Scanner;
 			sourceTree = "<group>";
@@ -180,6 +183,7 @@
 				36241B182972FE1400A78C58 /* DocScannerApp.swift in Sources */,
 				36241B322974432B00A78C58 /* SelectedPhotoView.swift in Sources */,
 				36241B342974514700A78C58 /* SelectedPhotoViewModel.swift in Sources */,
+				36241B372974576900A78C58 /* TextRecognizer.swift in Sources */,
 				36241B2A297313B600A78C58 /* CameraView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

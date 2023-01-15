@@ -76,7 +76,14 @@ struct DashboardView: View {
             }, resultAction: { result in
                 switch result {
                 case .success(let scan):
-                    print("\(scan)")
+                    for i in 0..<scan.pageCount {
+                        let img = scan.imageOfPage(at: i)
+
+                        guard let imgData = img.pngData() else { return }
+
+                        vm.selectedPhotosData.append(imgData)
+                    }
+
                 case .failure(let error):
                     print("\(error)")
                 }

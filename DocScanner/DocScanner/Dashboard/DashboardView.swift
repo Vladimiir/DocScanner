@@ -17,54 +17,58 @@ struct DashboardView: View {
     ]
 
     var body: some View {
-        VStack {
-            Spacer()
-                .frame(height: 20)
+        NavigationStack {
+            VStack {
+                Spacer()
+                    .frame(height: 20)
 
-            Text("DocScanner")
-                .font(.title)
-                .bold()
+                Text("DocScanner")
+                    .font(.title)
+                    .bold()
 
-            Spacer()
-                .frame(height: 30)
+                Spacer()
+                    .frame(height: 30)
 
-            ScrollView {
-                LazyVGrid(columns: rows) {
-                    ForEach(vm.selectedPhotosData, id: \.self) { photoData in
-                        if let image = UIImage(data: photoData) {
-                            Image(uiImage: image)
-                                .resizable()
-                                .scaledToFit()
+                ScrollView {
+                    LazyVGrid(columns: rows) {
+                        ForEach(vm.selectedPhotosData, id: \.self) { photoData in
+                            if let image = UIImage(data: photoData) {
+                                NavigationLink(destination: SelectedPhotoView(vm: SelectedPhotoViewModel(image))) {
+                                    Image(uiImage: image)
+                                        .resizable()
+                                        .scaledToFit()
+                                }
+                            }
                         }
                     }
                 }
                 .background(Color.gray.opacity(0.25))
-            }
 
-            Spacer()
-                .frame(maxHeight: 30)
+                Spacer()
+                    .frame(maxHeight: 30)
 
-            HStack {
-                Button {
-                    vm.isScannerPresented.toggle()
-                } label: {
-                    Text("Scan")
-                        .font(.title2)
+                HStack {
+                    Button {
+                        vm.isScannerPresented.toggle()
+                    } label: {
+                        Text("Scan")
+                            .font(.title2)
+                    }
+
+                    Spacer()
+                        .frame(width: 50)
+
+                    Button {
+                        vm.isGalleryPresented.toggle()
+                    } label: {
+                        Text("Gallery")
+                            .font(.title2)
+                    }
                 }
 
                 Spacer()
-                    .frame(width: 50)
-
-                Button {
-                    vm.isGalleryPresented.toggle()
-                } label: {
-                    Text("Gallery")
-                        .font(.title2)
-                }
+                    .frame(height: 50)
             }
-
-            Spacer()
-                .frame(height: 50)
         }
         .fullScreenCover(isPresented: $vm.isScannerPresented) {
             CameraView(cancelAction: {
@@ -94,6 +98,8 @@ struct DashboardView: View {
                         }
                     }
                 }
+
+                vm.isGalleryPresented.toggle()
             }
         }
     }
